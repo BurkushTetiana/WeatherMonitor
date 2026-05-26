@@ -21,12 +21,10 @@ namespace WeatherMonitor.Controllers
             _repository = repository;
         }
 
-        // GET /weather — вся історія
         [HttpGet]
         public JsonResult Get() =>
             new JsonResult(_repository.GetAll());
 
-        // GET /weather/latest — останній запис
         [HttpGet("latest")]
         public JsonResult GetLatest()
         {
@@ -36,7 +34,6 @@ namespace WeatherMonitor.Controllers
             return new JsonResult(latest);
         }
 
-        // POST /weather — додати запис вручну
         [HttpPost]
         public JsonResult Post()
         {
@@ -44,7 +41,6 @@ namespace WeatherMonitor.Controllers
             return new JsonResult(reading);
         }
 
-        // PUT /weather — оновити запис
         [HttpPut]
         public JsonResult Put([FromBody] WeatherReading reading)
         {
@@ -65,7 +61,6 @@ namespace WeatherMonitor.Controllers
                 : new JsonResult("Update failed");
         }
 
-        // DELETE /weather?id=... — видалити запис
         [HttpDelete]
         public JsonResult Delete(Guid id)
         {
